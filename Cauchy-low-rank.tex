@@ -1,0 +1,177 @@
+\documentclass[12pt]{article}
+% !BIB program = biber
+\usepackage{newtxtext,newtxmath}
+\usepackage{amsmath}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\usepackage[style=numeric,isbn=false,url=false]{biblatex}
+\addbibresource{Zolotarev-refs.bib}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=blue,
+    urlcolor=blue,
+}
+
+%The contour should not extend to infinity, the error analysis should only involve finite things...
+
+\title{\vspace{-0.7in}Low-rank approximations of the Cauchy kernel}
+\author{Jonathan E. Moussa \\ Molecular Sciences Software Institute, Blacksburg, VA}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note compares two forms of low-rank approximation of the Cauchy kernel: interpolative decompositions and exponential sums.
+There is strong evidence that interpolative decompositions are optimal with respect to pointwise relative error and that exponential sums are asymptotically optimal as the number of exponentials increases.
+\end{abstract}
+
+\section{Introduction}
+
+Here I consider the problem of low-rank approximation of the Cauchy kernel,
+\begin{equation} \label{low_rank}
+ \frac{1}{x-y} \approx \sum_{i=1}^n f_i(x) g_i(y) \ \ \ \mathrm{for} \ \ \ x \in \mathcal{X}, y \in \mathcal{Y},
+\end{equation}
+ where $\mathcal{X}$ and $\mathcal{Y}$ are disjoint subsets of the complex plane.
+There are many ways to construct such approximations, depending on the choices of error metric, functional form, and approximation domain.
+
+If the error metric is the pointwise relative error and the approximation domains $\mathcal{X}$ and $\mathcal{Y}$ are real, compact, and ordered ($\mathcal{X} > \mathcal{Y}$),
+ then I have previously \cite{moussa2020minimaxseparationcauchykernel} shown that an interpolative decomposition,
+\begin{equation} \label{interpolation}
+ I(x,y) = \sum_{i=1}^n \sum_{j=1}^n \frac{1}{x-y_i} \frac{\mathrm{Res}(h,y_i) \mathrm{Res}(1/h,x_j)}{y_i - x_j} \frac{1}{x_j - y}, \ \ \ h(z) = \prod_{i=1}^{n} \frac{z-x_i}{z-y_i},
+\end{equation}
+ is optimal if the only constraint on the form of $f$ and $g$ is that they are real-valued.
+An important property of this approximation form is that the pointwise relative error simplifies as
+\begin{equation}
+ 1 - (x-y) I(x,y) = h(x) / h(y).
+\end{equation}
+Thus, if the optimization is restricted to the interpolation form in Eq.\@ (\ref{interpolation}), a variational upper bound on the error optimized over interpolation points is
+\begin{equation} \label{minimax}
+ \min_{f_i, g_i} \max_{x\in\mathcal{X}, y \in \mathcal{Y}} |1 - (x-y) I(x,y)| \le \min_{x_i,y_i} \max_{x\in\mathcal{X}, y \in \mathcal{Y}} | h(x) / h(y) |.
+\end{equation}
+Showing equality of these formulas by proving the corresponding lower bound is a more complicated exercise of convex relaxations that I do not consider here.
+This minimax error is a specific instance of a Zolotarev number, more generally defined as
+\begin{equation} \label{Z}
+ Z_n(\mathcal{X}, \mathcal{Y}) = \inf_{h \in R_{n,n}} \frac{\sup_{x \in \mathcal{X}} |h(x)|}{\inf_{y \in \mathcal{Y}}|h(y)|}
+\end{equation}
+ for a positive integer $n$, disjoint subsets $\mathcal{X}$ and $\mathcal{Y}$ of $\mathbb{C}$, and the set $R_{n,n}$ of rational functions with numerator and denominator of polynomial degree at most $n$.
+In this general setting, the infimum and supremum must be used because the minimum and maximum might not be well defined.
+
+While Eq.\@ (\ref{minimax}) can be optimized numerically, there is an analytical solution for $\mathcal{X} = [\lambda,1]$ and $\mathcal{Y} = [-1,-\lambda]$ that was discovered by Zolotarev \cite{Todd1984},
+ which can be transformed to other disjoint pairs of real intervals using a M\"{o}bius transformation.
+I refer to this case specifically as $Z_n(\lambda) = Z_n([\lambda,1],[-1,-\lambda])$.
+Its optimal interpolation points are
+\begin{equation} \label{roots_poles}
+ x_i = \mathrm{dn}\left( \tfrac{i - 1/2}{n} K(1-\lambda^2), 1 - \lambda^2 \right) = -y_i,
+\end{equation}
+ where $K$ is the complete elliptic integral of the first kind and $\mathrm{dn}$ is a Jacobi elliptic function, both with the argument conventions used by the SciPy library in Python.
+For error estimation purposes, the value of $Z_n(\lambda)$ can be bounded as
+\begin{equation}
+ Z_n(\lambda) \le 4 \exp\left( - n \frac{2 \pi K(\lambda^2)}{K(1-\lambda^2)} \right) \le 4 \exp\left( - n \frac{\pi^2}{\log(4/\lambda)} \right).
+\end{equation}
+SciPy can be used to evaluate the special functions in Eq.\@ (\ref{roots_poles}) unless $\lambda$ is small enough that $1-\lambda^2$ is rounded to 1 in double-precision arithmetic.
+In this extreme case, SciPy still provides direct access to $K(1-x)$ for a user-specified value of $x$, but there is no equivalent feature for $\mathrm{dn}$,
+ so I use a custom implementation of $\mathrm{dn}$ with a similar interface.
+I show an extreme example in Fig.\@ \ref{r_example} to highlight numerical stability and the equioscillation behavior of the optimizing rational functions.
+Note that high relative accuracy requires $h$ to be evaluated as the product shown in Eq.\@ (\ref{interpolation}).
+
+\begin{figure}
+\includegraphics{fig1.pdf}
+     \caption{Rational function $h$ that minimizes $Z_n(\lambda)$ for $n=200$ and $\lambda = 10^{-9}$.
+}\label{r_example}
+\end{figure}
+
+\section{Exponential sums}
+
+Another popular approximation form for Eq.\@ (\ref{low_rank}) is a sum of exponentials,
+\begin{equation} \label{exponential_sum}
+ \frac{1}{x-y} \approx \sum_{i=1}^n w_i e^{-s_i (x-y)}
+\end{equation}
+ because it reduces to a simpler function approximation problem,
+\begin{equation} \label{exponential_sum2}
+ \frac{1}{z} \approx \sum_{i=1}^n w_i e^{-s_i z} \ \ \ \mathrm{for} \ \ \ z \in \mathcal{Z} = \{ x - y : x \in \mathcal{X}, y \in \mathcal{Y} \}.
+\end{equation}
+There are several methods for constructing such approximations in the literature,
+ by aligning the nodes of the residual error function between interpolative and sum-of-exponential forms \cite{10.1093/imanum/dri015}
+ or as numerical integration quadrature \cite{BEYLKIN2010131}.
+Here I consider a more direct construction based on the interpolative decomposition.
+The basic idea is to start from a shifted Laplace transform decomposition of $1/z$,
+\begin{equation}
+ \frac{1}{z} = e^{s_{\min}z}\int_{s_{\min}}^{\infty} ds \, e^{-sz},
+\end{equation}
+ and a reconstruction of the exponential from Cauchy's integral formula with a contour along the imaginary axis that is closed over the positive reals,
+\begin{equation}
+ e^{-sz} = \frac{1}{2 \pi i} \int_{-i\infty}^{i\infty} dt \frac{e^{-tz}}{t - s} \ \ \ \mathrm{for} \ \ \ s, z >0.
+\end{equation}
+By combining these two integral decompositions,
+\begin{equation} \label{exponential_base}
+ \frac{1}{z} = \frac{e^{s_{\min}z}}{2 \pi i} \int_{s_{\min}}^{\infty} ds \int_{-i\infty}^{i\infty} dt \frac{e^{-tz}}{t - s},
+\end{equation}
+ an exponential sum can be constructed directly from an interpolative decomposition of the Cauchy kernel.
+
+The approximation domain of the Cauchy kernel in Eq.\@ (\ref{exponential_base}) is along both the imaginary axis with $t \in \mathbb{C}$ and along part of the real axis with $s$.
+It is necessary to restrict the domain of $s$, and I consider a domain $[-s_{\max}, -s_{\min}] \cup [s_{\min}, s_{\max}]$.
+I construct this approximation from Zolotarev's solution through a sequence of transformations.
+First, I use a M\"{o}bius transformation,
+\begin{equation}
+ z' = s_{\min}^2 \frac{1 + \lambda'}{2 \lambda'} \frac{z + \lambda'}{1+z},
+\end{equation}
+ to transform $z \in [-1, -\lambda']$ to $z' \in (-\infty,0]$ and $z \in [\lambda', 1]$ to $z' \in [s_{\min}^2, s_{\max}^2]$ for $\lambda'$ satisfying
+\begin{equation}
+ s_{\max}^2 = s_{\min}^2 \frac{(\lambda' +1)^2}{4 \lambda'}.
+\end{equation}
+Similarly, the M\"{o}bius transformation applies to the interpolation points to form the optimal interpolative decomposition of the Cauchy kernel on the transformed domain
+ with transformed interpolation points $x_i'$ and $y_i'$.
+
+The second transformation step is less straightforward.
+I would like to apply a square root transformation to map the positive reals to the real axis and the negative reals to the imaginary axis,
+ but the interpolative decomposition is not strictly invariant with respect to such a transformation.
+Instead, I consider a distinct interpolative decomposition with $2n$ pairs of interpolation points defined as $s_{\pm i} = \pm \sqrt{x_i'}$ and $t_{\pm i} = \pm \sqrt{y_i'}$
+ and labeled as
+\begin{equation} \label{interpolation2}
+ K(t,s) = \sum_{i} \sum_{j} \frac{1}{t-s_i} \frac{\mathrm{Res}(k, s_i) \mathrm{Res}(1/k,t_j)}{s_i - t_j} \frac{1}{t_j - s}, \ \ \ k(z) = \prod_i \frac{z-t_i}{z-s_i}.
+\end{equation}
+The same simplification of the pointwise relative error also applies to this case,
+\begin{equation}
+ 1 - (t-s) K(t,s) = k(t)/k(s).
+\end{equation}
+This error formula is then related to the original error formula as
+\begin{equation}
+ \frac{k(t)}{k(s)} = \frac{h'(s^2)}{h'(t^2)}, \ \ \ h'(z) = \prod_{i=1}^n \frac{z-x_i'}{z - y_i'},
+\end{equation}
+ so the pointwise relative error is still bounded by the same Zolotarev number, $Z_n(\lambda')$.
+However, the optimality of the interpolative decomposition is not preserved by this transformation - it is likely to still be within a constant multiplicative factor of optimal, but it is no longer strictly optimal.
+
+To apply this interpolative decomposition of the Cauchy kernel to Eq.\@ (\ref{exponential_base}), I split the Laplace transform domain into $[s_{\min},s_{\max}]$ and $(s_{\max}, \infty)$
+ and use the decomposition only within the first domain to construct the exponential sum approximation
+\begin{equation}
+ F(z) = {\sum_i} ' w_i e^{(s_{\min}-s_i) z},  \ \ \ w_i = \mathrm{Res}(k, s_i) \left[ \sum_j \frac{\mathrm{Res}(1/k,t_j)}{s_i - t_j} \log \left( \frac{t_j - s_{\min}}{t_j - s_{\max}} \right) \right],
+\end{equation}
+ where the sum over $i$ is restricted to positive $s_i$ values because the negative poles do not contribute to the sum over residues in the positive real half plane when evaluating Cauchy's integral formula.
+The weights are all positive and can be further simplified as
+\begin{equation}
+ w_i = \cdots .
+\end{equation}
+The pointwise relative error in this approximation is
+\begin{equation}
+ 1 - z F(z) = e^{-(s_{\max} - s_{\min}) z} + z \frac{e^{s_{\min}z}}{2 \pi i} \int_{s_{\min}}^{s_{\max}} ds \int_{-i\infty}^{i\infty} dt \frac{e^{-tz}}{t - s} \frac{k(t)}{k(s)},
+\end{equation}
+ and the construction of error bounds requires an upper bound on this quantity.
+Although $|k(t)/k(s)|$ on the integration domain is bounded by $Z_n(\lambda')$, the rest of the integrand is not absolutely integrable on this domain.
+It is possible to create an absolutely integrable domain by using a semicircle contour of a finite radius that encapsulates $[s_{\min}, s_{\max}]$,
+ but the arc of the semicircle needs a separate bounding argument because $|k(t)/k(s)|$ is not bounded by $Z_n(\lambda')$ on this new domain.
+If this alternate contour is effective, this approach could also utilize a more efficient domain transformation that maps $[-1,-\lambda']$
+ to the segment of imaginary axis along this contour rather than the complete imaginary axis.
+An error bound is needed before $s_{\min}$, $s_{\max}$, and possible the contour radius can be optimized to minimize the error of Eq.\@ (\ref{exponential_sum2}) on the approximation domain $[\lambda,1]$.
+\textit{ I am not sure that this approach to error analysis will work, but it is the most promising idea that I have right now }.
+
+\section*{Acknowledgement}
+The Molecular Sciences Software Institute is supported by grant CHE-2136142 from the National Science Foundation.
+
+\printbibliography
+
+\end{document}

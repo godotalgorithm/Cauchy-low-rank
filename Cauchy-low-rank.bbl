@@ -1,0 +1,205 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{BEYLKIN2010131}{article}{}
+      \name{author}{2}{}{%
+        {{hash=4c320df8c1884cdf0cf4e2c5fd74cee9}{%
+           family={Beylkin},
+           familyi={B\bibinitperiod},
+           given={Gregory},
+           giveni={G\bibinitperiod}}}%
+        {{hash=0a1450c2ceac7fff59fb35cfda84c525}{%
+           family={Monzón},
+           familyi={M\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{65e7d59ef5dbf178ef44d382028e1e5e}
+      \strng{fullhash}{65e7d59ef5dbf178ef44d382028e1e5e}
+      \strng{bibnamehash}{65e7d59ef5dbf178ef44d382028e1e5e}
+      \strng{authorbibnamehash}{65e7d59ef5dbf178ef44d382028e1e5e}
+      \strng{authornamehash}{65e7d59ef5dbf178ef44d382028e1e5e}
+      \strng{authorfullhash}{65e7d59ef5dbf178ef44d382028e1e5e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We revisit the efficient approximation of functions by sums of exponentials or Gaussians in Beylkin and Monzón (2005) [16] to discuss several new results and applications of these approximations. By using the Poisson summation to discretize integral representations of e.g., power functions r−β, β>0, we obtain approximations with uniform relative error on the whole real line. Our approach is applicable to a class of functions and, in particular, yields a separated representation for the function e−xy. As a result, we obtain sharper error estimates and a simpler method to derive trapezoidal-type quadratures valid on finite intervals. We also introduce a new reduction algorithm for the case where our representation has an excessive number of terms with small exponents. As an application of these new estimates, we simplify and improve previous results on separated representations of operators with radial kernels. For any finite but arbitrary accuracy, we obtain new separated representations of solutions of Laplace's equation satisfying boundary conditions on the half-space or the sphere. These representations inherit a multiresolution structure from the Gaussian approximation leading to fast algorithms for the evaluation of the solutions. In the case of the sphere, our approach provides a foundation for a new multiresolution approach to evaluating and estimating models of gravitational potentials used for satellite orbit computations.}
+      \field{issn}{1063-5203}
+      \field{journaltitle}{Applied and Computational Harmonic Analysis}
+      \field{note}{Special Issue on Continuous Wavelet Transform in Memory of Jean Morlet, Part I}
+      \field{number}{2}
+      \field{title}{Approximation by exponential sums revisited}
+      \field{volume}{28}
+      \field{year}{2010}
+      \field{pages}{131\bibrangedash 149}
+      \range{pages}{19}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.acha.2009.08.011
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1063520309000906
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1063520309000906
+      \endverb
+      \keyw{Approximation by exponentials,Approximation by Gaussians,Radial kernels,Separated representations,Poisson kernel for half-space,Poisson kernel for the sphere,Models of gravitational potentials}
+    \endentry
+    \entry{10.1093/imanum/dri015}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b9e1a759b45ca11808d2dcc9f19ea074}{%
+           family={Braess},
+           familyi={B\bibinitperiod},
+           given={Dietrich},
+           giveni={D\bibinitperiod}}}%
+        {{hash=01bcfafc59c11a565163fcf9ef2a0907}{%
+           family={Hackbusch},
+           familyi={H\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9d18f575ba1409fd298697fe029f1c29}
+      \strng{fullhash}{9d18f575ba1409fd298697fe029f1c29}
+      \strng{bibnamehash}{9d18f575ba1409fd298697fe029f1c29}
+      \strng{authorbibnamehash}{9d18f575ba1409fd298697fe029f1c29}
+      \strng{authornamehash}{9d18f575ba1409fd298697fe029f1c29}
+      \strng{authorfullhash}{9d18f575ba1409fd298697fe029f1c29}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Approximations of 1/x by sums of exponentials are well studied for finite intervals. Here the error decreases like 𝒪(exp(−ck)) with the order k of the exponential sum. In this paper we investigate approximations of 1/x in the interval [1, ∞). We prove estimates of the error by and confirm this asymptotic estimate by numerical results. Numerical results lead to the conjecture that the constant in the exponent equals .}
+      \field{issn}{0272-4979}
+      \field{journaltitle}{IMA Journal of Numerical Analysis}
+      \field{month}{10}
+      \field{number}{4}
+      \field{title}{Approximation of 1/x by exponential sums in [1, $\infty$)}
+      \field{volume}{25}
+      \field{year}{2005}
+      \field{pages}{685\bibrangedash 697}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1093/imanum/dri015
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1093/imanum/dri015
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1093/imanum/dri015
+      \endverb
+    \endentry
+    \entry{moussa2020minimaxseparationcauchykernel}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=0ef71640b782c913d0ac4919afb51b6b}{%
+           family={Moussa},
+           familyi={M\bibinitperiod},
+           given={Jonathan\bibnamedelima E.},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{0ef71640b782c913d0ac4919afb51b6b}
+      \strng{fullhash}{0ef71640b782c913d0ac4919afb51b6b}
+      \strng{bibnamehash}{0ef71640b782c913d0ac4919afb51b6b}
+      \strng{authorbibnamehash}{0ef71640b782c913d0ac4919afb51b6b}
+      \strng{authornamehash}{0ef71640b782c913d0ac4919afb51b6b}
+      \strng{authorfullhash}{0ef71640b782c913d0ac4919afb51b6b}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.NA}
+      \field{eprinttype}{arXiv}
+      \field{title}{Minimax separation of the Cauchy kernel}
+      \field{year}{2020}
+      \verb{eprint}
+      \verb 1909.06911
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1909.06911
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1909.06911
+      \endverb
+    \endentry
+    \entry{Todd1984}{inbook}{}
+      \name{author}{1}{}{%
+        {{hash=4cf60dfbeaa491b7b5ec01cc24ee5cda}{%
+           family={Todd},
+           familyi={T\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=546cddab80f8b7a4f1d7d156a8d96bee}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={S.\bibnamedelimi P.},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=1c23ce910438d908662066f4d25814b4}{%
+           family={Burry},
+           familyi={B\bibinitperiod},
+           given={J.\bibnamedelimi W.\bibnamedelimi H.},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=d75f654bd63377ce5f34389d68acf5b8}{%
+           family={Watson},
+           familyi={W\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Dordrecht}%
+      }
+      \list{publisher}{1}{%
+        {Springer Netherlands}%
+      }
+      \strng{namehash}{4cf60dfbeaa491b7b5ec01cc24ee5cda}
+      \strng{fullhash}{4cf60dfbeaa491b7b5ec01cc24ee5cda}
+      \strng{bibnamehash}{4cf60dfbeaa491b7b5ec01cc24ee5cda}
+      \strng{authorbibnamehash}{4cf60dfbeaa491b7b5ec01cc24ee5cda}
+      \strng{authornamehash}{4cf60dfbeaa491b7b5ec01cc24ee5cda}
+      \strng{authorfullhash}{4cf60dfbeaa491b7b5ec01cc24ee5cda}
+      \strng{editorbibnamehash}{e2590813c6b90e3df39005c74cac7a49}
+      \strng{editornamehash}{e2590813c6b90e3df39005c74cac7a49}
+      \strng{editorfullhash}{e2590813c6b90e3df39005c74cac7a49}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{What we are concerned with is, roughly, the generalization to the elliptic case of the familiar multiple angle formulas of elementary trigonometry such as{\$}{\$}{\backslash}begin{\{}array{\}}{\{}l{\}}{\backslash}cos {\backslash},2{\backslash}theta = 2{\{}{\backslash}cos ^2{\}}{\backslash},{\backslash}theta {\backslash}, - {\backslash},1;{\backslash},{\backslash}tan {\backslash},2{\backslash}theta = {\backslash}frac{\{}{\{}2{\backslash},{\backslash}tan {\backslash}theta {\}}{\}}{\{}{\{}1 - {\{}{\{}{\backslash}tan {\}}^2{\}}{\backslash}theta {\}}{\}};{\backslash}{\backslash}{\backslash}sin {\backslash},2{\backslash}theta = 2{\backslash},{\backslash}sin {\backslash},{\backslash}theta {\backslash}cos {\backslash}, {\backslash}in = 2{\backslash}sin {\backslash},{\backslash}theta {\backslash}sqrt {\{}{\backslash}left( {\{}1 - {\{}{\{}{\backslash}sin {\}}^2{\}}{\backslash}theta {\}} {\backslash}right){\}}{\backslash}end{\{}array{\}}{\$}{\$}(which are respectively polynomial, rational, algebraic). More generally we have{\$}{\$}{\backslash}cos {\backslash},{\{}{\backslash}rm{\{}n{\}}{\}}{\backslash}theta = {\{}2^{\{}n - 1{\}}{\}}{\backslash}left[ {\{}{\{}{\{}{\backslash}cos {\}}^n{\}}{\backslash}theta - {\backslash}frac{\{}1{\}}{\{}4{\}}{\backslash},{\{}{\{}{\backslash}cos {\}}^{\{}n - 2{\}}{\}}{\backslash},{\backslash}theta {\backslash}, + {\backslash}, {\backslash}ldots {\}} {\backslash}right]{\$}{\$}which we can also express as a Chebyshev polynomial:{\$}{\$}{\{}{\{}{\backslash}rm{\{}T{\}}{\}}{\_}{\{}{\backslash}rm{\{}n{\}}{\}}{\}}{\backslash}left( {\{}{\backslash}rm{\{}x{\}}{\}} {\backslash}right) = {\{}{\backslash}rm{\{}cos{\}}{\}}{\backslash}left( {\{}{\{}{\backslash}rm{\{}n{\}}{\}}{\backslash},{\{}{\backslash}rm{\{}arccos{\}}{\}}{\backslash},{\{}{\backslash}rm{\{}x{\}}{\}}{\}} {\backslash}right) = {\{}{\{}{\backslash}rm{\{}2{\}}{\}}^{\{}{\{}{\backslash}rm{\{}n{\}}{\}} - {\{}{\backslash}rm{\{}1{\}}{\}}{\}}{\}}{\backslash}left[ {\{}{\{}{\{}{\backslash}rm{\{}x{\}}{\}}^{\{}{\backslash}rm{\{}n{\}}{\}}{\}} - {\backslash}frac{\{}{\{}{\backslash}rm{\{}1{\}}{\}}{\}}{\{}{\{}{\backslash}rm{\{}4{\}}{\}}{\}}{\{}{\backslash}rm{\{}n{\}}{\}}{\{}{\{}{\backslash}rm{\{}x{\}}{\}}^{\{}{\{}{\backslash}rm{\{}n{\}}{\}} - {\{}{\backslash}rm{\{}2{\}}{\}}{\}}{\}}{\backslash},{\{}{\backslash}rm{\{} + {\}}{\}}{\backslash},{\{}{\backslash}rm{\{} {\backslash}ldots {\}}{\}}{\}} {\backslash}right] = {\{}{\{}{\backslash}rm{\{}2{\}}{\}}^{\{}{\{}{\backslash}rm{\{}n{\}}{\}} - {\{}{\backslash}rm{\{}1{\}}{\}}{\}}{\}}{\{}{\backslash}rm{\{} {\}}{\}}{\{}{\{}{\backslash}rm{\{}{\backslash}tilde T{\}}{\}}{\_}{\{}{\backslash}rm{\{}n{\}}{\}}{\}}{\backslash}left( {\{}{\backslash}rm{\{}x{\}}{\}} {\backslash}right){\$}{\$}}
+      \field{booktitle}{Approximation Theory and Spline Functions}
+      \field{isbn}{978-94-009-6466-2}
+      \field{title}{Applications of Transformation Theory: A Legacy from Zolotarev (1847--1878)}
+      \field{year}{1984}
+      \field{pages}{207\bibrangedash 245}
+      \range{pages}{39}
+      \verb{doi}
+      \verb 10.1007/978-94-009-6466-2_11
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-94-009-6466-2_11
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-94-009-6466-2_11
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
